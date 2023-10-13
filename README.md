@@ -43,7 +43,22 @@
 ## 参考链接
 
 - https://gitee.com/morixinguan/QT_Project
+
+- 太极创客   
+
+- https://github.com/zhuhai-esp/LuatOS-C3-Video-Cast/tree/main
+
+- https://github.com/zhuhai-esp/ESP32-C3-LuatOS/tree/main
+
+- https://blog.csdn.net/u013742125/article/details/130592427     TFT_eSPI库之相关API
+
+- http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/iot-c/
+
 - 
+
+- 
+
+  
 
 
 

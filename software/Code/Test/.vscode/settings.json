@@ -1,0 +1,7 @@
+{
+    "cmake.sourceDirectory": "E:/Gitee/Monitoring-hardware/software/Code/Test/lib/TFT_eSPI-2.4.61",
+    "files.associations": {
+        "*.tcc": "cpp",
+        "tft_big,h": "c"
+    }
+}
