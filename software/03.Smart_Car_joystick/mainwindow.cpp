@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(client,SIGNAL(disconnected()),this,SLOT(ReadData()));
 
-    client->connectToHost("192.168.4.1",8080);
+    client->connectToHost("172.20.10.8",8080);
     if (client->waitForConnected(1000))
         ui->label->setText("已连接智能小车");
     else
