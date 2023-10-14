@@ -35,7 +35,7 @@ code	color
 
 #include <TFT_eSPI.h> // Hardware-specific library
 #include <SPI.h>
-
+#include <LCD.h>
 #define TFT_GREY 0x5AEB
 
 TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
@@ -51,6 +51,7 @@ byte xcolon = 0, xsecs = 0;
 unsigned int colour = 0;
 
 void setup(void) {
+  LCD_Init();
   //Serial.begin(115200);
   tft.init();
   tft.setRotation(3);
@@ -63,6 +64,8 @@ void setup(void) {
 }
 
 void loop() {
+
+  LCD_Test();
   if (targetTime < millis()) {
     // Set next update for 1 second later
     targetTime = millis() + 1000;
