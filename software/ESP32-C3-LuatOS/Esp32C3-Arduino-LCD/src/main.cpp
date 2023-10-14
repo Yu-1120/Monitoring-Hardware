@@ -12,7 +12,7 @@ void setup() {
   tft.setTextFont(2);
   tft.fillScreen(TFT_BLACK);
   tft.drawString("Hello ESP32C3!!", 0, 0);
-  tft.drawRect(2, 20, 100, 20, TFT_BROWN);
+  // tft.drawRect(2, 20, 100, 20, TFT_BROWN);
 }
 
 void loop() {}

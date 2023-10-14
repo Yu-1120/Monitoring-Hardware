@@ -326,3 +326,27 @@ void Picture_Display(const unsigned char *ptr_pic)
 }
 
 
+// void  setup(){
+// 	SPI_BLK_1;
+
+// 	IO_init();
+// 	SPI_CS_1;
+// 	TFT_init();
+// 	TFT_full(RED);
+// 	delay(100);
+// 	TFT_full(GREEN);
+// 	delay(100);
+// 	TFT_full(BLUE);
+// 	delay(100);
+// 	TFT_clear();
+// }
+
+// void  loop(){
+ 
+// 	//Picture_Display(point);
+// 	delay(1000);
+// 	TFT_clear();
+
+
+// 	delay(1000);
+// }

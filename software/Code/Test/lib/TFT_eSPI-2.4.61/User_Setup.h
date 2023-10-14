@@ -51,7 +51,7 @@
 //#define ILI9481_DRIVER
 //#define ILI9486_DRIVER
 //#define ILI9488_DRIVER     // WARNING: Do not connect ILI9488 display SDO to MISO if other devices share the SPI bus (TFT SDO does NOT tristate when CS is high)
-//#define ST7789_DRIVER      // Full configuration option, define additional parameters below for this display
+// #define ST7789_DRIVER      // Full configuration option, define additional parameters below for this display
 //#define ST7789_2_DRIVER    // Minimal configuration option, define additional parameters below for this display
 //#define R61581_DRIVER
 //#define RM68140_DRIVER
@@ -80,11 +80,11 @@
 // #define M5STACK
 
 // For ST7789, ST7735, ILI9163 and GC9A01 ONLY, define the pixel width and height in portrait orientation
-#define TFT_WIDTH  80
+#define TFT_WIDTH  128  //240
 // #define TFT_WIDTH  128
 // #define TFT_WIDTH  172 // ST7789 172 x 320
 // #define TFT_WIDTH  240 // ST7789 240 x 240 and 240 x 320
-#define TFT_HEIGHT 160
+#define TFT_HEIGHT 160  //320
 // #define TFT_HEIGHT 128
 // #define TFT_HEIGHT 240 // ST7789 240 x 240
 // #define TFT_HEIGHT 320 // ST7789 240 x 320
@@ -201,13 +201,23 @@
 // For ESP32 Dev board (only tested with ILI9341 display)
 // The hardware SPI can be mapped to any pins
 
-// #define TFT_MISO -1
-#define TFT_MOSI 3
-#define TFT_SCLK 2
-#define TFT_CS    7  // Chip select control pin
-#define TFT_DC    6  // Data Command control pin
-#define TFT_RST   10  // Reset pin (could connect to RST pin)
-#define TFT_BL   11  // LED back-light
+#define TFT_MISO -1
+
+// #define TFT_MOSI 3
+// #define TFT_SCLK 2
+// #define TFT_CS    7  // Chip select control pin
+// #define TFT_DC    6  // Data Command control pin
+// #define TFT_RST   10  // Reset pin (could connect to RST pin)
+// #define TFT_BL   11  // LED back-light
+
+
+#define TFT_MOSI 1
+#define TFT_SCLK 0
+#define TFT_CS    19  // Chip select control pin
+#define TFT_DC    18  // Data Command control pin
+#define TFT_RST   12  // Reset pin (could connect to RST pin)
+#define TFT_BL   8  // LED back-light
+
 
 // For ESP32 Dev board (only tested with GC9A01 display)
 // The hardware SPI can be mapped to any pins
@@ -338,8 +348,10 @@
 // #define SPI_FREQUENCY   5000000
 // #define SPI_FREQUENCY  10000000
 // #define SPI_FREQUENCY  20000000
-// #define SPI_FREQUENCY  27000000
-#define SPI_FREQUENCY  40000000
+#define SPI_FREQUENCY  27000000
+
+// #define SPI_FREQUENCY  40000000
+
 // #define SPI_FREQUENCY  55000000 // STM32 SPI1 only (SPI2 maximum is 27MHz)
 // #define SPI_FREQUENCY  80000000
 

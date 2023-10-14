@@ -44,7 +44,7 @@
 
 - https://gitee.com/morixinguan/QT_Project
 
-- 太极创客   
+- 
 
 - https://github.com/zhuhai-esp/LuatOS-C3-Video-Cast/tree/main
 
@@ -52,11 +52,15 @@
 
 - https://blog.csdn.net/u013742125/article/details/130592427     TFT_eSPI库之相关API
 
-- http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/iot-c/
+- http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/iot-c/    太极创客   
 
-- 
+- https://blog.csdn.net/qq_43415898/article/details/129126193    驱动两个spi屏的问题
 
-- 
+- https://gitee.com/lzafmn/esp32-TFT
+
+- https://gitee.com/superddg123/esp32-TFT
+
+- https://blog.csdn.net/finedayforu/article/details/108975245    
 
   
 
