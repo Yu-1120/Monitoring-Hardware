@@ -66,7 +66,27 @@
 
 - https://github.com/schreibfaul1/ESP32-TFT-Library-ILI9486/tree/master
 
+- Adafruit_GFX
+
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+netstat -aon|findstr "8080"
+```
+
+
 
 
 
