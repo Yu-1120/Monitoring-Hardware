@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "E:/Gitee/Monitoring-hardware/S-code/.pio/libdeps/esp32dev/Unity"
+    "cmake.sourceDirectory": "E:/Gitee/Monitoring-hardware/Software/Adafruit_GFX-Key-V1/.pio/libdeps/esp32dev/Adafruit BusIO",
+    "files.associations": {
+        "*.tcc": "cpp"
+    }
 }
