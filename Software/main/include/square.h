@@ -1,6 +1,7 @@
 #pragma once
 #include <TFT_eSPI.h>
 #include <math.h>
+#include <key.h>
 // 作者：伊娃老师来了 https://www.bilibili.com/read/cv24702488/ 出处：bilibili
 TFT_eSPI tft1 = TFT_eSPI();  // 创建 TFT_eSPI 实例
 
@@ -236,4 +237,23 @@ void square(){
   }
 
   delay(1);  // 稍微延迟一下，调整旋转速度
+}
+
+void square_for_2000(){
+  
+
+  for (size_t i = 0; i < 2000; i++)
+  {
+    square();
+    int state_C = digitalRead(BTN_C);
+    //在里面进行设定退出正方形选择方块
+    if (state_C == LOW) {
+    // Serial.println("Button C pressed");
+          break ;
+        // 执行中按键按下时的操作
+    }
+     
+  }
+  
+  
 }
