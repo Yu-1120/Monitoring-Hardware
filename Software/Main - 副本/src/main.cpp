@@ -12,25 +12,13 @@
 #include <pgmspace.h>
 #include <square.h>
 
-#include <BleKeyboard.h>
-#include <Bounce2.h>
-
-unsigned char keyValue = 0;
 
 #define TFT_CS      7        //管脚定义，左边的屏幕
 #define TFT_RST    10
 #define TFT_DC      6
 #define TFT_SCLK    2
 #define TFT_MOSI    3
-
-BleKeyboard bleKeyboard("ESP32蓝牙键盘","Espressif",100);//其中“ESP32蓝牙键盘”为键盘名称；"Espressif"为制造商
-
-Bounce2::Button button_u = Bounce2::Button();
-Bounce2::Button button_d = Bounce2::Button();
-Bounce2::Button button_l = Bounce2::Button();
-Bounce2::Button button_r = Bounce2::Button();
-Bounce2::Button button_c = Bounce2::Button(); 
-
+ 
 
 #define BTN_U 13
 #define BTN_D 8
@@ -39,53 +27,110 @@ Bounce2::Button button_c = Bounce2::Button();
 #define BTN_C 4
 
 
-#define BL_EN1 8
 
 TFT_eSPI tftRight = TFT_eSPI(); 
 TFT_eSprite clk = TFT_eSprite(&tftRight);
 //左边的屏幕
 Adafruit_ST7735 tftLeft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCLK, TFT_RST); 
 
+#define BL_EN1 8
+
 char* ssid     = "ikun"; //填写你的wifi名字
 char* password = "hongpeiyu"; //填写你的wifi密码
-void BluetoothInit()
+
+bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)//jpg解码回调函数
 {
+  if ( y >= tftRight.height() ) return 0;
+  tftRight.pushImage(x, y, w, h, bitmap);
+  // Return 1 to decode next block
+  return 1;
+}
 
-  Serial.println("Starting BLE Work!");
+byte loadNum = 6;
+void loading(byte delayTime)
+{//启动动画
   
-  button_u.attach(BTN_U, INPUT_PULLUP);
-  button_d.attach(BTN_D, INPUT_PULLUP);
-  button_l.attach(BTN_L, INPUT_PULLUP);
-  button_r.attach(BTN_R, INPUT_PULLUP);
-  button_c.attach(BTN_C, INPUT_PULLUP);
+  clk.setColorDepth(8);
   
-  button_u.interval(5);
-  button_d.interval(5);
-  button_l.interval(5);
-  button_r.interval(5);
-  button_c.interval(5);
+  clk.createSprite(200, 50);
+  clk.fillSprite(0x0000);
 
-  button_u.setPressedState(LOW);
-  button_d.setPressedState(LOW);
-  button_l.setPressedState(LOW);
-  button_r.setPressedState(LOW);
-  button_c.setPressedState(LOW);
+  clk.drawRoundRect(0,0,200,16,8,0xFFFF);
+  clk.fillRoundRect(3,3,loadNum,10,5,0xFFFF);
+  clk.setTextDatum(CC_DATUM);
+  clk.setTextColor(TFT_GREEN, 0x0000); 
+  clk.drawString("Connecting to WiFi",100,40,2);
+  clk.pushSprite(20,67);//20 110
+  clk.deleteSprite();
 
-  bleKeyboard.begin();
-  tftRight.init();
+
+  loadNum += 1;
+  if(loadNum>=195)
+  {
+      loadNum = 195;
+  }
+  delay(delayTime);
+}
+
+void WifiInit(){
+
+  tftRight.begin();
   tftRight.setRotation(3);
+  tftRight.fillScreen(TFT_BLACK);//黑色
+  tftRight.setTextColor(TFT_BLACK,TFT_WHITE);
   
-  tftRight.fillScreen(TFT_BLACK);
-  tftRight.setTextColor(TFT_BLUE, TFT_BLACK);
-  tftRight.drawString("Bluetooth", 0, 0, 2);
-  tftRight.setTextColor(TFT_YELLOW, TFT_BLACK);
-  tftRight.drawString("up - V+  down - V-", 0, 16, 2);
-  tftRight.drawString("left - >   right - <", 0, 32, 2);
-  tftRight.drawString("center - Vol  mute", 0, 48, 2);
+  WiFi.begin(ssid, password); //连接wifi
+  delay(1000); //等待1秒
+  while (WiFi.status() != WL_CONNECTED) {
+    for(byte n=0;n<10;n++){ //每500毫秒检测一次状态
+      loading(50);
+    }
+  }
+   while(loadNum < 195){ //让动画走完
+    loading(3);
+   }
+  if (WiFi.status() == WL_CONNECTED) //判断如果wifi连接成功
+  { 
+    tftRight.fillScreen(TFT_BLACK);
+    Serial.println("wifi is connected!");
+    Serial.print("SSID: ");
+    Serial.println(WiFi.SSID());
+    IPAddress ip = WiFi.localIP();
+    String ipString = ip.toString();
+    Serial.print("IP Address: ");
+    Serial.println(ip);
+
+  }
 
 
 }
-void Bluetooth(){
+
+void helloworld(){
+    tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
+    tftLeft.setTextSize(2);  // 设置字体大小
+    tftLeft.setFont(&FreeMono12pt7b);
+    tftLeft.setTextColor(ST77XX_WHITE); // 设置字体颜色
+    tftLeft.setCursor(0, 30); // 设置文本位置
+    // 在左边的屏幕上显示中文
+    // tft.print(F("你好，世界！hell,world")); //读不了中文
+    tftLeft.print(F("Hello World")); //读不了中文
+
+}
+
+void share(){
+    tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
+    tftLeft.setTextSize(2);  // 设置字体大小
+    tftLeft.setFont(&FreeMono12pt7b);
+    tftLeft.setTextColor(ST77XX_WHITE); // 设置字体颜色
+    tftLeft.setCursor(0, 30); // 设置文本位置
+
+    // 在左边的屏幕上显示中文
+    // tft.print(F("你好，世界！hell,world")); //读不了中文
+    tftLeft.print(F("Blue Tooth")); //读不了中文
+
+}
+
+void CPU(){
 
     tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
     tftLeft.setTextSize(2);  // 设置字体大小
@@ -95,9 +140,11 @@ void Bluetooth(){
 
     // 在左边的屏幕上显示中文
     // tft.print(F("你好，世界！hell,world")); //读不了中文
-    tftLeft.print(F("Blue tooth")); //读不了中文
-    
+    tftLeft.print(F(" CPU Info ")); //读不了中文
+
+
 }
+
 
 
 int key_check(){
@@ -137,47 +184,23 @@ int key_check(){
 
 }
 
-void BluetoothDriver()
-{
+void square_for_2000(){
+  
 
-  if(bleKeyboard.isConnected()) {
-    //多媒体测试
-    Serial.println("Sending Play/Pause media key...");
-    bleKeyboard.write(KEY_MEDIA_PLAY_PAUSE);
- 
-    delay(1000);
- 
-    //Ctrl+Alt+Delete任务管理器，并进行锁屏操作
-    Serial.println("Sending Ctrl+Alt+Delete...");
-    bleKeyboard.press(KEY_LEFT_CTRL);
-    bleKeyboard.press(KEY_LEFT_ALT);
-    bleKeyboard.press(KEY_DELETE);
-    delay(100);
-    bleKeyboard.releaseAll();
- 
-    //输入密码并开机
-    Serial.println("下面填入你的开机密码↓");
-    bleKeyboard.print("--你的开机密码，注意大小写--");
-    delay(100);
-    Serial.println("Enter");
-    bleKeyboard.write(KEY_RETURN);
+  for (size_t i = 0; i < 2000; i++)
+  {
+    square();
+    int state_C = digitalRead(BTN_C);
+    //在里面进行设定退出正方形选择方块
+    if (state_C == LOW) {
+    // Serial.println("Button C pressed");
+          break ;
+        // 执行中按键按下时的操作
+    }
+     
   }
-  Serial.println("Waiting 5 seconds...");
-
-
-
-}
-
-void helloworld(){
-    tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
-    tftLeft.setTextSize(2);  // 设置字体大小
-    tftLeft.setFont(&FreeMono12pt7b);
-    tftLeft.setTextColor(ST77XX_WHITE); // 设置字体颜色
-    tftLeft.setCursor(0, 30); // 设置文本位置
-    // 在左边的屏幕上显示中文
-    // tft.print(F("你好，世界！hell,world")); //读不了中文
-    tftLeft.print(F("Hello World")); //读不了中文
-
+  
+  
 }
 
 void setup(){
@@ -188,7 +211,7 @@ void setup(){
     digitalWrite(BL_EN1,LOW);          //打开背光
     tftLeft.initR(INITR_MINI160x80);      // Init ST7735S chip, black tab
     tftLeft.setRotation(1);                //旋转屏幕
-    tftLeft.fillRect(0,0,160,80,ST77XX_BLUE);
+    tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
     
 
 
@@ -198,7 +221,7 @@ void setup(){
     pinMode(BTN_R, INPUT_PULLUP);
     pinMode(BTN_C, INPUT_PULLUP);
 
-    BluetoothInit();
+
 }
 void loop(){
     // key_check();
@@ -207,13 +230,15 @@ void loop(){
     {
     case 1:
         helloworld();
-         break;
+            //
+        WifiInit();
+        square_for_2000();
+        break;
     case 2:
-        Bluetooth();
-        BluetoothDriver();
+        share();
         break;
     case 3:
-
+        CPU();
         break;
     default:
         break;

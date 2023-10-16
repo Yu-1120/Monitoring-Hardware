@@ -1,4 +1,3 @@
-#pragma once
 #include <TFT_eSPI.h>
 #include <math.h>
 // 作者：伊娃老师来了 https://www.bilibili.com/read/cv24702488/ 出处：bilibili
