@@ -33,11 +33,13 @@ void CPU(){
     tftLeft.setFont(&FreeMono12pt7b);
     tftLeft.setTextColor(ST77XX_WHITE); // 设置字体颜色
     tftLeft.setCursor(0, 30); // 设置文本位置
-
     tftLeft.print(F(" CPU Info ")); //读不了中文
 
 
 }
+
+
+
 void Clock(){
 
     tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
