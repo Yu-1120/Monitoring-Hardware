@@ -1,6 +1,0 @@
-{
-    "cmake.sourceDirectory": "E:/Gitee/Monitoring-hardware/software/ESP32-C3-LuatOS/Esp32C3-Arduino-LCD/lib/TFT_eSPI-2.4.61",
-    "files.associations": {
-        "*.tcc": "cpp"
-    }
-}
