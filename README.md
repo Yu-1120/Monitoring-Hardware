@@ -68,6 +68,8 @@
 
 - Adafruit_GFX
 
+- https://github.com/julienboriasse/esp32-tcp-client
+
   
 
 
