@@ -36,7 +36,7 @@
 
 ### Gerber文件
 
-
+https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-13/Gerber_PCB1_2023-10-13.zip
 
 ### 可以优化的地方
 
@@ -56,19 +56,13 @@
 
 ## 参考链接
 
-- https://gitee.com/morixinguan/QT_Project
 
-- 
-
-- https://github.com/zhuhai-esp/LuatOS-C3-Video-Cast/tree/main
-
-- https://github.com/zhuhai-esp/ESP32-C3-LuatOS/tree/main
 
 - https://blog.csdn.net/u013742125/article/details/130592427     TFT_eSPI库之相关API
 
-- http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/iot-c/    太极创客   
-
 - https://blog.csdn.net/qq_43415898/article/details/129126193    驱动两个spi屏的问题
+
+- Adafruit_GFX
 
 - https://gitee.com/lzafmn/esp32-TFT
 
@@ -80,7 +74,7 @@
 
 - https://github.com/schreibfaul1/ESP32-TFT-Library-ILI9486/tree/master
 
-- Adafruit_GFX
+- 
 
 - https://github.com/julienboriasse/esp32-tcp-client
 

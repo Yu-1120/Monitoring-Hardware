@@ -5,26 +5,24 @@
 #include <Key.h>
 #include <TFT_Right.h>
 #include <TFT_eSPI.h>
+
+
 WiFiServer server; //声明服务器对象
 
 
 void CPU_Show(String GPU_Rate){
 
-    byte loadNum = 6;
+  
     tftRight.fillScreen(TFT_BLACK);//黑色
-    clk.setColorDepth(8);
+    // tftRight.setCursor(0, 0);//* 将“光标”设置在显示器的左上角（0,0）
+	/* 将“光标”设置在显示器的左上角（0,0），并选择字体2 */
+	tftRight.setCursor(0, 0,2);
+	/* 将字体颜色设置为白色，背景为黑色，将文本大小倍增设置为1 */
+
+	tftRight.setTextColor(TFT_GREEN,TFT_BLACK);
+	tftRight.setTextFont(4);  //支持2，4号大小,5号大小不支持了
+	tftRight.println(GPU_Rate);
     
-    clk.createSprite(200, 50);
-    clk.fillSprite(0x0000);
-
-    clk.drawRoundRect(0,0,200,16,8,0xFFFF);
-    clk.fillRoundRect(3,3,loadNum,10,5,0xFFFF);
-    clk.setTextDatum(CC_DATUM);
-    clk.setTextColor(TFT_GREEN, 0x0000); 
-    clk.drawString(GPU_Rate,100,40,2);
-    clk.pushSprite(20,67);//20 110
-    clk.deleteSprite();
-
 }
 void CPU_TCP(){
     server.begin(2333); //服务器启动，端口号2333
@@ -52,13 +50,15 @@ void CPU_TCP(){
                     }
                 }
             }
-            client.stop(); //结束当前连接:
-            Serial.println("[No client connection]");//无客户端连接
+            
             int state_C = digitalRead(BTN_C);
             //在里面进行设定退出正方形选择方块
             if (state_C == LOW) {
-            // Serial.println("Button C pressed");
+               
+                client.stop(); //结束当前连接:
+                Serial.println("[No client connection]");//无客户端连接
                 break ;
+                
                 // 执行中按键按下时的操作
             }
 
@@ -67,6 +67,7 @@ void CPU_TCP(){
         //在里面进行设定退出正方形选择方块
         if (state_C == LOW) {
         // Serial.println("Button C pressed");
+         Serial.println("exit CPU information");
             break ;
             // 执行中按键按下时的操作
         }

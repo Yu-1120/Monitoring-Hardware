@@ -13,12 +13,14 @@
 void setup(){
     Serial.begin(9600); // 初始化串口通信
     pinMode(BL_EN1,OUTPUT);
-    digitalWrite(BL_EN1,LOW);          //打开背光
+    // digitalWrite(BL_EN1,LOW);          //打开背光
+    digitalWrite(BL_EN1,HIGH);
     tftLeft.initR(INITR_MINI160x80);      // Init ST7735S chip, black tab
     tftLeft.setRotation(1);                //旋转屏幕
     tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
+    
     Key_Init();
-
+    Helloworld();
 }
 void loop(){
     int choice = Key_check();
@@ -38,10 +40,9 @@ void loop(){
         CPU_TCP();
         break;
     case 4:
-        Clock();
-        ClockInit();
+        Weather();
         WifiInit();
-        ClockTime();
+        WeatherTime();
         break;
     default:
         break;

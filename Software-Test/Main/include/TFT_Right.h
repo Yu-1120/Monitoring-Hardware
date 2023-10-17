@@ -1,6 +1,7 @@
 #pragma once
 #include <TFT_eSPI.h>
 #include <WiFi.h>
+
 TFT_eSPI tftRight = TFT_eSPI(); 
 TFT_eSprite clk = TFT_eSprite(&tftRight);
 

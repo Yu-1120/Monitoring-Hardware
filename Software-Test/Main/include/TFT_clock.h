@@ -7,11 +7,7 @@
 #include <Key.h>
 
 
-void ClockInit(){
-         Serial.println("ClockInit()");
-}
-
-void  ClockTime(){
+void  WeatherTime(){
     while (1)
     {
         Serial.println("ClockTime()");

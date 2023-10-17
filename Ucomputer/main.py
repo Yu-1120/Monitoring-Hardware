@@ -77,7 +77,6 @@ class TcpWidget(QWidget):
         used_memory_gb = round(memory_usage.used / (2 ** 30), 2)
         free_memory_gb = round(memory_usage.free / (2 ** 30), 2)
         percent_memory = round(memory_usage.percent, 2)
-
         print(f"GPU总内存: {total_memory_gb} GB")
         print(f"GPU已使用: {used_memory_gb} GB")
         print(f"GPU可用内存: {free_memory_gb} GB")
@@ -92,8 +91,8 @@ class TcpWidget(QWidget):
         tcp_client_1.connect(("192.168.137.85", 2333))
         # tcp_client_1.connect((self.IPAddressLineEdit.text(), self.PortNameLineEdit.text()))
         # 将编号好的数据存到变量send_data中，注：encode(encoding='utf-8)是将数据转换成utf-8的格式发送给服务器
-        send_data = ("GPU usage rate(GPU使用率): " + str(free_memory_gb) + "%\r\n").encode(encoding='utf-8')
-
+        send_data = ("CPU use:" + str(cpu_usage) + "%\n"+"GPU use"+ str(percent_memory) + "%\n\r").encode(encoding='utf-8')
+        # send_data = ("GPU\r").encode(encoding='utf-8')
         # 3 通过客户端套接字的send方法将数据发送给服务器
         tcp_client_1.send(send_data)
         # 4 通过客户端套接字的recv方法来接受服务器返回的数据存到变量recv_data中，1024是可接收的最大字节数。

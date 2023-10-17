@@ -1,5 +1,6 @@
 #include <TFT_Left.h>
 #include <Fonts/FreeMono12pt7b.h>
+#include <TFT_Right.h>
 
 void Helloworld(){
     tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
@@ -12,6 +13,9 @@ void Helloworld(){
     tftLeft.print(F("Hello World")); //读不了中文
 
 }
+
+
+
 void Wifi_Menu(){
     tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
     tftLeft.setTextSize(2);  // 设置字体大小
@@ -45,14 +49,14 @@ void CPU(){
     tftLeft.setFont(&FreeMono12pt7b);
     tftLeft.setTextColor(ST77XX_WHITE); // 设置字体颜色
     tftLeft.setCursor(0, 30); // 设置文本位置
-    tftLeft.print(F(" CPU Info ")); //读不了中文
+    tftLeft.print(F(" CPU Infor ")); //读不了中文
 
 
 }
 
 
 
-void Clock(){
+void Weather(){
 
     tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
     tftLeft.setTextSize(2);  // 设置字体大小
