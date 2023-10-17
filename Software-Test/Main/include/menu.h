@@ -1,6 +1,8 @@
+#pragma one
 #include <TFT_Left.h>
 #include <Fonts/FreeMono12pt7b.h>
 #include <TFT_Right.h>
+
 
 void Helloworld(){
     tftLeft.fillRect(0,0,160,80,ST77XX_BLACK);
@@ -11,8 +13,10 @@ void Helloworld(){
     // 在左边的屏幕上显示中文
     // tft.print(F("你好，世界！hell,world")); //读不了中文
     tftLeft.print(F("Hello World")); //读不了中文
+        
 
 }
+
 
 
 

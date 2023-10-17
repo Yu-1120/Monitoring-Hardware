@@ -7,7 +7,7 @@
 #include <TFT_Left.h>
 #include <TFT_Right.h>
 #include <menu.h>
-#include <TFT_clock.h>
+#include <weather.h>
 #include <CPU.h>
 
 void setup(){
@@ -37,11 +37,17 @@ void loop(){
     case 3:
         CPU();
         WifiInit();
+        square_for_2000();
+        CPU_Show_Tcp();
         CPU_TCP();
         break;
     case 4:
         Weather();
         WifiInit();
+        square_for_2000();
+
+
+        
         WeatherTime();
         break;
     default:

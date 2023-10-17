@@ -42,7 +42,7 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 ## 2-软件
 
-
+![image-20231018014341436](Readme.assets/image-20231018014341436.png)
 
 ### 所用的库
 
