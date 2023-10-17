@@ -5,10 +5,9 @@
 //注意：上位机只能使用 彩屏投屏助手V1.0-1.2之间的版本
 #include <TFT_eSPI.h>
 #include <SPI.h>
-#include <WiFi.h>
+
 #include <TJpg_Decoder.h>
 #include <pgmspace.h>
-#include <square.h>
 TFT_eSPI tft = TFT_eSPI(); 
 TFT_eSprite clk = TFT_eSprite(&tft);
 
