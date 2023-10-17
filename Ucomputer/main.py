@@ -1,6 +1,5 @@
 # coding:utf-8
 import sys
-
 from PyQt5.QtCore import Qt, QEvent
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QStackedWidget, QHBoxLayout, QLabel, QWidget, QVBoxLayout, QTableWidgetItem
@@ -10,11 +9,12 @@ from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
 from qfluentwidgets import PushButton, LineEdit, InfoBar, InfoBarPosition, TableWidget, TableWidget, TableItemDelegate
 
+import psutil  # pip  install  psutil
+import socket # pip install socket
+# 获取内存占用率
+memory_usage = psutil.virtual_memory()
 
-
-
-
-class loginWidget(QWidget):
+class TcpWidget(QWidget):
 
     def __init__(self, text: str, parent=None):
         super().__init__(parent=parent)
@@ -25,35 +25,41 @@ class loginWidget(QWidget):
         self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
 
         self.setObjectName(text.replace(' ', '-'))
-        self.loginName = PushButton('IP地址', self)
-        self.loginName.move(100, 40)
-        self.loginName.resize(100, 40)
+        self.IPAddress = PushButton('IP地址', self)
+        self.IPAddress.move(120, 40)
+        self.IPAddress.resize(100, 35)
 
-        self.loginAccountLineEdit = LineEdit(self)
-        self.loginAccountLineEdit.move(250, 40)
-        self.loginAccountLineEdit.resize(600, 2500)
-        self.loginAccountLineEdit.setClearButtonEnabled(True)
+        self.IPAddressLineEdit = LineEdit(self)
+        self.IPAddressLineEdit.move(250, 40)
+        self.IPAddressLineEdit.resize(200, 2500)
+        self.IPAddressLineEdit.setClearButtonEnabled(True)
 
         self.setObjectName(text.replace(' ', '-'))
-        self.loginPassword = PushButton('端口', self)
-        self.loginPassword.move(100, 100)
-        self.loginPassword.resize(100, 40)
+        self.PortName = PushButton('端口', self)
+        self.PortName.move(120, 100)
+        self.PortName.resize(100, 35)
 
-        self.loginPasswordLineEdit = LineEdit(self)
-        self.loginPasswordLineEdit.move(250, 100)
-        self.loginPasswordLineEdit.resize(600, 2500)
-        self.loginPasswordLineEdit.setClearButtonEnabled(True)
+        self.PortNameLineEdit = LineEdit(self)
+        self.PortNameLineEdit.move(250, 100)
+        self.PortNameLineEdit.resize(200, 2500)
+        self.PortNameLineEdit.setClearButtonEnabled(True)
 
-        self.loginButton = PushButton('登录Login', self)
-        self.loginButton.clicked.connect(self.createLoginInfoBar)
-        self.loginButton.move(400, 200)
-        self.loginButton.resize(200, 33)
+        self.TCPconnectSuccessButton = PushButton('连接', self)
+        self.TCPconnectSuccessButton.clicked.connect(self.TCPconnectSuccess)
+        self.TCPconnectSuccessButton.move(250, 200)
+        self.TCPconnectSuccessButton.resize(200, 60)
 
-    def createLoginInfoBar(self):
-        print("登录成功！")
+        self.loginButton = PushButton('断开', self)
+        self.loginButton.clicked.connect(self.TCPconnectSuccess)
+        self.loginButton.move(250, 300)
+        self.loginButton.resize(200, 60)
+
+
+    def TCPconnectSuccess(self):
+        print(self.IPAddressLineEdit.text())
         InfoBar.success(
-            title='登录成功！',
-            content="登录成功！",
+            title='TCP',
+            content="TCP通道已建立",
             orient=Qt.Horizontal,
             isClosable=True,
             position=InfoBarPosition.TOP,
@@ -61,132 +67,41 @@ class loginWidget(QWidget):
             parent=self
         )
 
+        # 打印内存占用率
+        print(f"内存占用率: {memory_usage.percent}%")
+        # 获取CPU使用率
+        cpu_usage = psutil.cpu_percent(interval=1)  # 可以指定时间间隔
+        print(f"CPU使用率: {cpu_usage}%")
 
+        total_memory_gb = round(memory_usage.total / (2 ** 30), 2)
+        used_memory_gb = round(memory_usage.used / (2 ** 30), 2)
+        free_memory_gb = round(memory_usage.free / (2 ** 30), 2)
+        percent_memory = round(memory_usage.percent, 2)
 
+        print(f"GPU总内存: {total_memory_gb} GB")
+        print(f"GPU已使用: {used_memory_gb} GB")
+        print(f"GPU可用内存: {free_memory_gb} GB")
+        print(f"GPU使用率: {percent_memory}%")
+        message = "GPU使用率: " + str(percent_memory) + "%"
+        print(message)
+        # 1 创建客户端套接字对象tcp_client_1
+        # 参数介绍：AF_INET 代表IPV4类型, SOCK_STREAM代表tcp传输协议类型 ,注：AF_INET6代表IPV6
+        tcp_client_1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # 2 通过客户端套接字的connect方法与服务器套接字建立连接
+        # 参数介绍：前面的ip地址代表服务器的ip地址，后面的61234代表服务端的端口号 。
+        tcp_client_1.connect(("192.168.137.85", 2333))
+        # tcp_client_1.connect((self.IPAddressLineEdit.text(), self.PortNameLineEdit.text()))
+        # 将编号好的数据存到变量send_data中，注：encode(encoding='utf-8)是将数据转换成utf-8的格式发送给服务器
+        send_data = ("GPU usage rate(GPU使用率): " + str(free_memory_gb) + "%\r\n").encode(encoding='utf-8')
 
-class registerWidget(QWidget):
-
-    def __init__(self, text: str, parent=None):
-        super().__init__(parent=parent)
-        self.label = QLabel(text, self)
-        self.hBoxLayout = QHBoxLayout(self)
-
-        self.label.setAlignment(Qt.AlignCenter)
-        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
-
-        self.setObjectName(text.replace(' ', '-'))
-
-        self.registerName = PushButton('注册账号', self)
-        self.registerName.move(100, 40)
-        self.registerName.resize(100, 40)
-
-        self.registerAccountLineEdit = LineEdit(self)
-        self.registerAccountLineEdit.move(250, 40)
-        self.registerAccountLineEdit.resize(600, 2500)
-        self.registerAccountLineEdit.setClearButtonEnabled(True)
-
-        self.registerPassword = PushButton('注册密码', self)
-        self.registerPassword.move(100, 100)
-        self.registerPassword.resize(100, 40)
-
-        self.regiterPasswordLineEdit = LineEdit(self)
-        self.regiterPasswordLineEdit.move(250, 100)
-        self.regiterPasswordLineEdit.resize(600, 2500)
-        self.regiterPasswordLineEdit.setClearButtonEnabled(True)
-
-        self.regiterButton = PushButton('注册Resigter', self)
-
-        self.regiterButton.move(400, 200)
-        self.regiterButton.resize(200, 60)
-
-
-
-
-class selectWidget(QWidget):
-
-    def __init__(self, text: str, parent=None):
-        super().__init__(parent=parent)
-        self.label = QLabel(text, self)
-        self.hBoxLayout = QHBoxLayout(self)
-
-
-
-
-
-
-
-
-class deleteWidget(QWidget):
-
-    def __init__(self, text: str, parent=None):
-        super().__init__(parent=parent)
-        self.label = QLabel(text, self)
-        self.hBoxLayout = QHBoxLayout(self)
-
-        self.label.setAlignment(Qt.AlignCenter)
-        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
-
-        self.setObjectName(text.replace(' ', '-'))
-
-        self.deleteName = PushButton('删除账号名字', self)
-        self.deleteName.move(100, 40)
-        self.deleteName.resize(100, 40)
-
-        self.deleteNameLineEdit = LineEdit(self)
-        self.deleteNameLineEdit.move(250, 40)
-        self.deleteNameLineEdit.resize(600, 2500)
-        self.deleteNameLineEdit.setClearButtonEnabled(True)
-
-        self.deleteButton = PushButton('确定删除', self)
-
-        self.deleteButton.move(400, 200)
-        self.deleteButton.resize(200, 33)
-
-
-
-
-
-
-class updateWidget(QWidget):
-
-    def __init__(self, text: str, parent=None):
-        super().__init__(parent=parent)
-        self.label = QLabel(text, self)
-        self.hBoxLayout = QHBoxLayout(self)
-
-        self.label.setAlignment(Qt.AlignCenter)
-        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
-
-        self.setObjectName(text.replace(' ', '-'))
-
-        self.deleteName = PushButton('需要修改账号名字', self)
-        self.deleteName.move(100, 40)
-        self.deleteName.resize(100, 40)
-
-        self.deleteAccountLineEdit = LineEdit(self)
-        self.deleteAccountLineEdit.move(250, 40)
-        self.deleteAccountLineEdit.resize(600, 2500)
-        self.deleteAccountLineEdit.setClearButtonEnabled(True)
-
-        self.deletePassword = PushButton('修改密码', self)
-        self.deletePassword.move(100, 100)
-        self.deletePassword.resize(100, 40)
-
-        self.deletePasswordLineEdit = LineEdit(self)
-        self.deletePasswordLineEdit.move(250, 100)
-        self.deletePasswordLineEdit.resize(600, 2500)
-        self.deletePasswordLineEdit.setClearButtonEnabled(True)
-
-        self.deleteButton = PushButton('修改', self)
-
-        self.deleteButton.move(400, 200)
-        self.deleteButton.resize(200, 60)
-
-
-
-
-#####################################  update method  END
-
+        # 3 通过客户端套接字的send方法将数据发送给服务器
+        tcp_client_1.send(send_data)
+        # 4 通过客户端套接字的recv方法来接受服务器返回的数据存到变量recv_data中，1024是可接收的最大字节数。
+        recv_data = tcp_client_1.recv(1024)
+        # 将接收到的服务器数据recv_data通过decode方法解码为utf-8
+        print(recv_data.decode(encoding='utf-8'))
+        # # 5 最后关闭客户端套接字连接
+        tcp_client_1.close()
 
 class Window(FramelessWindow):
 
@@ -205,17 +120,11 @@ class Window(FramelessWindow):
         self.stackWidget = QStackedWidget(self)
 
         # create sub interface
-        self.loginInterface = loginWidget('0', self)
-        self.resgisterInterface = registerWidget('1', self)
-        self.selectInterface = selectWidget('2', self)
-        self.deleteInterface = deleteWidget('3', self)
-        self.updateInterface = updateWidget('4', self)
+        self.TcpInterface = TcpWidget(' ', self)
 
-        self.stackWidget.addWidget(self.loginInterface)
-        self.stackWidget.addWidget(self.resgisterInterface)
-        self.stackWidget.addWidget(self.selectInterface)
-        self.stackWidget.addWidget(self.deleteInterface)
-        self.stackWidget.addWidget(self.updateInterface)
+
+        self.stackWidget.addWidget(self.TcpInterface)
+
 
         # initialize layout
         self.initLayout()
@@ -233,11 +142,8 @@ class Window(FramelessWindow):
         self.vBoxLayout.setStretchFactor(self.stackWidget, 1)
 
     def initNavigation(self):
-        self.addSubInterface(self.loginInterface, FIF.VIDEO, 'TCP')
-        self.addSubInterface(self.resgisterInterface, FIF.VIDEO, '')
-        self.addSubInterface(self.selectInterface, FIF.VIDEO, '')
-        self.addSubInterface(self.deleteInterface, FIF.VIDEO, '')
-        self.addSubInterface(self.updateInterface, FIF.VIDEO, '')
+        self.addSubInterface(self.TcpInterface, FIF.VIDEO, 'TCP')
+
         self.navigationInterface.addSeparator()
         self.stackWidget.currentChanged.connect(self.onCurrentInterfaceChanged)
         self.stackWidget.setCurrentIndex(1)
@@ -253,7 +159,7 @@ class Window(FramelessWindow):
         )
 
     def initWindow(self):
-        self.resize(1000, 500)
+        self.resize(500, 500)
         self.setWindowIcon(QIcon('resource/logo.png'))
         self.setWindowTitle('TCP上位机')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
