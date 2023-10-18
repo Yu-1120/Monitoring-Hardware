@@ -46,7 +46,6 @@ void loop(){
     case 4:
         Weather();
         WifiInit();
-        square_for_2000();
         WeatherTime();
         break;
     default:

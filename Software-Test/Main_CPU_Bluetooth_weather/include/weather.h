@@ -147,7 +147,7 @@ void  WeatherTime(){
         
         // 向心知天气服务器服务器请求信息并对信息进行解析
         httpRequest(reqRes);
-
+        delay(500);
 
  
 
