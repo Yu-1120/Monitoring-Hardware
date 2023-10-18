@@ -1,4 +1,6 @@
-# 基于Socket通信的电脑智能监控硬件
+## 基于Socket通信的电脑智能监控硬件
+
+## 技术实现
 
 
 
@@ -32,7 +34,13 @@
 
 ### PCB仿真图
 
+#### 2023-10-9
 
+![实物仿真图1](Readme.assets/实物仿真图1.png)
+
+
+
+![实物仿真图](Readme.assets/实物仿真图.png)
 
 ### Gerber文件
 
@@ -40,11 +48,37 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 ### 可以优化的地方
 
+
+
+#### 2023-10-18-12点54分
+
+
+
+
+
+
+
 ## 2-软件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ![image-20231018014341436](Readme.assets/image-20231018014341436.png)
 
-### 所用的库
+### 
 
 
 
@@ -54,7 +88,7 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 
 
-## 参考链接
+## 参考链接（调用的库）
 
 
 
@@ -64,37 +98,10 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 - Adafruit_GFX
 
-- https://gitee.com/lzafmn/esp32-TFT
-
-- https://gitee.com/superddg123/esp32-TFT
-
-- https://blog.csdn.net/finedayforu/article/details/108975245    
-
-- https://github.com/zjsss900/esp32c3_arduino_Raycasting_DEMO
-
-- https://github.com/schreibfaul1/ESP32-TFT-Library-ILI9486/tree/master
-
 - 
 
-- https://github.com/julienboriasse/esp32-tcp-client
-
-  
 
 
-
-
-
-
-
-
-
-
-
-
-
-```
-netstat -aon|findstr "8080"
-```
 
 
 

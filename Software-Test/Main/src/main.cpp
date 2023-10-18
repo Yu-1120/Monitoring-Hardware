@@ -9,7 +9,7 @@
 #include <menu.h>
 #include <weather.h>
 #include <CPU.h>
-
+// #include <BlueTooth.h>
 void setup(){
     Serial.begin(9600); // 初始化串口通信
     pinMode(BL_EN1,OUTPUT);
@@ -33,6 +33,8 @@ void loop(){
         break;
     case 2:
         BlueTooth();
+        // square_for_2000();
+        // BlueKeyboardDriver();
         break;
     case 3:
         CPU();
@@ -45,9 +47,6 @@ void loop(){
         Weather();
         WifiInit();
         square_for_2000();
-
-
-        
         WeatherTime();
         break;
     default:
