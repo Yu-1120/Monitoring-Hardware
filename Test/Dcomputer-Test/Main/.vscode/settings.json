@@ -1,0 +1,15 @@
+{
+    "cmake.sourceDirectory": "E:/Gitee/Monitoring-hardware/Software-Test/Main/.pio/libdeps/esp32dev/Adafruit BusIO",
+    "files.associations": {
+        "*.tcc": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "fstream": "cpp"
+    }
+}

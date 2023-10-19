@@ -50,11 +50,11 @@ class TcpWidget(QWidget):
         self.TCPconnectSuccessButton.resize(200, 60)
 
         self.loginButton = PushButton('断开', self)
-        self.loginButton.clicked.connect(self.TCPconnectSuccess)
+        self.loginButton.clicked.connect(self.TCPconnectRejust)
         self.loginButton.move(250, 300)
         self.loginButton.resize(200, 60)
 
-
+    tcp_client_1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     def TCPconnectSuccess(self):
         print(self.IPAddressLineEdit.text())
         InfoBar.success(
@@ -66,7 +66,7 @@ class TcpWidget(QWidget):
             duration=2000,
             parent=self
         )
-
+        # 192.168.137.169  2333
         # 打印内存占用率
         print(f"内存占用率: {memory_usage.percent}%")
         # 获取CPU使用率
@@ -88,7 +88,7 @@ class TcpWidget(QWidget):
         tcp_client_1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # 2 通过客户端套接字的connect方法与服务器套接字建立连接
         # 参数介绍：前面的ip地址代表服务器的ip地址，后面的61234代表服务端的端口号 。
-        tcp_client_1.connect(("192.168.137.249", 2333))
+        tcp_client_1.connect(("192.168.137.169", 2333))
         # tcp_client_1.connect((self.IPAddressLineEdit.text(), self.PortNameLineEdit.text()))
         # 将编号好的数据存到变量send_data中，注：encode(encoding='utf-8)是将数据转换成utf-8的格式发送给服务器
         send_data = ("CPU use:" + str(cpu_usage) + "%\n"+"GPU use"+ str(percent_memory) + "%\n\r").encode(encoding='utf-8')
@@ -100,7 +100,25 @@ class TcpWidget(QWidget):
         # 将接收到的服务器数据recv_data通过decode方法解码为utf-8
         print(recv_data.decode(encoding='utf-8'))
         # # 5 最后关闭客户端套接字连接
-        tcp_client_1.close()
+
+        # # 5 最后关闭客户端套接字连接
+        # tcp_client_1.close()
+
+    def TCPconnectRejust(self):
+        print(self.IPAddressLineEdit.text())
+        InfoBar.success(
+            title='TCP',
+            content="TCP通道关闭",
+            orient=Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.TOP,
+            duration=2000,
+            parent=self
+        )
+
+        # 打印内存占用率
+        print(f"内存占用率: {memory_usage.percent}%")
+
 
 class Window(FramelessWindow):
 

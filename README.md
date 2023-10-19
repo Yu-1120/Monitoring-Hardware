@@ -1,10 +1,36 @@
-## 基于Socket通信的电脑智能监控硬件
+# 更新记录
+
+
+
+| 时间                   |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| 2023年10月16日18点33分 | 成功运行                                                     |
+| 2023年10月19日13点14分 | 集成了天气，上位机TCP通信传输数据到单片机，集成到蓝牙（做为一个模拟键盘） |
+|                        |                                                              |
+
+
+
+
+
+
+
+# 基于Socket通信的电脑智能监控硬件
+
+
+
+
+
+
+
+
+
+
 
 ## 技术实现
 
 
 
-
+![ESP32-C3](Readme.assets/ESP32-C3.png)
 
 ### 文件目录说明
 
@@ -78,8 +104,6 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 ![image-20231018014341436](Readme.assets/image-20231018014341436.png)
 
-### 
-
 
 
 
@@ -96,7 +120,7 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 - https://blog.csdn.net/qq_43415898/article/details/129126193    驱动两个spi屏的问题
 
-- Adafruit_GFX
+- Adafruit_GFX（小的屏幕驱动)
 
 - 
 
