@@ -14,9 +14,10 @@
 # 视频地址
 
 
-<iframe src="//player.bilibili.com/player.html?aid=962297299&bvid=BV1KH4y1d7iv&cid=1303834788&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+https://www.bilibili.com/video/BV1KH4y1d7iv/?spm_id_from=333.999.0.0
 
 
+<iframe src="//player.bilibili.com/player.html?aid=962297299&bvid=BV1KH4y1d7iv&cid=1303834788&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 
