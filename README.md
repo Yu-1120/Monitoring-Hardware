@@ -7,7 +7,8 @@
 | 2023年10月16日18点33分 | 成功运行                                                     |
 | 2023-10-18-12点54分    | 集成了天气，上位机TCP通信传输数据到单片机                    |
 | 2023年10月19日13点14分 | 集成了天气，上位机TCP通信传输数据到单片机，**集成到蓝牙（做为一个模拟键盘）** |
-|                        |                                                              |
+| 2024年2月6日18点43分   | 把硬件开源到嘉立创  [合宙ESP32C3-LCD-TFT屏-2023-10-2-V1 - 嘉立创EDA开源硬件平台 (oshwhub.com)](https://oshwhub.com/xiaoyu_student/he-zhou-esp32c3-lcd-tft-ping-2023-10-2-v-1-0-0) |
+| 2024年2月6日18点43分   | 更新硬件需要购买的                                           |
 
 
 
@@ -17,7 +18,6 @@
 https://www.bilibili.com/video/BV1KH4y1d7iv/?spm_id_from=333.999.0.0
 
 
-<iframe src="//player.bilibili.com/player.html?aid=962297299&bvid=BV1KH4y1d7iv&cid=1303834788&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 
@@ -84,7 +84,7 @@ Python 上位机的调用  psutil ，socket , PyQt5, FluentUI来进行编写，�
 
 
 
-## 1-硬件
+## 硬件
 
 
 
@@ -102,29 +102,14 @@ Python 上位机的调用  psutil ，socket , PyQt5, FluentUI来进行编写，�
 
 
 
-### 电路图
-
 
 
 ### PCB仿真图
 
-#### 2023-10-9
-
-![实物仿真图1](Readme.assets/实物仿真图1.png)
-
-
-
-![实物仿真图](Readme.assets/实物仿真图.png)
-
-### Gerber文件
+`2023-10-9 Gerber文件`
 
 https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-13/Gerber_PCB1_2023-10-13.zip
 
-### 可以优化的地方
-
-
-
-#### 
 
 
 
@@ -132,13 +117,10 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 
 
-## 2-软件
 
 
 
-
-
-
+## 软件
 
 
 
