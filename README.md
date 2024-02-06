@@ -151,12 +151,10 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 
 - https://blog.csdn.net/u013742125/article/details/130592427     TFT_eSPI库之相关API
-
 - https://blog.csdn.net/qq_43415898/article/details/129126193    驱动两个spi屏的问题
-
 - Adafruit_GFX（小的屏幕驱动)
-
 - [ESP32的蓝牙库: ESP32的蓝牙库ESP32的蓝牙库 (gitee.com)](https://gitee.com/its-a-slap/bluetooth-library-for-esp32)
+- [ESP32C3: ESP32C3-arduino固件 (gitee.com)](https://gitee.com/its-a-slap/esp32-c3)
 
 
 
