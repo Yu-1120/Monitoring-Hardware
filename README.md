@@ -114,6 +114,10 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 
 
+### 硬件需要购买
+
+
+
 
 
 
@@ -152,7 +156,7 @@ https://github.com/Yu-1120/Monitoring-Hardware/blob/master/hareware/V1_2023-10-1
 
 - Adafruit_GFX（小的屏幕驱动)
 
-- 
+- [ESP32的蓝牙库: ESP32的蓝牙库ESP32的蓝牙库 (gitee.com)](https://gitee.com/its-a-slap/bluetooth-library-for-esp32)
 
 
 
