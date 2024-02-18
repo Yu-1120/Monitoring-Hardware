@@ -1,6 +1,0 @@
-{
-    "cmake.sourceDirectory": "E:/Gitee/Monitoring-hardware/S-code/.pio/libdeps/esp32dev/Unity",
-    "files.associations": {
-        "system_error": "cpp"
-    }
-}
